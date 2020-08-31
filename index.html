@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Página</title>
+    <!--Custom CSS-->
+    <style>
+        body {
+            min-height: 100%;
+            height: 100%;
+            background-color: #F5F5F5 !important;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        
+        @keyframes colorchange{
+            0%{background-color: #f4e749;}
+            10%{background-color: #60bbf4;}
+            20%{background-color: aqua;}
+            30%{background-color: #7d42dd;}
+            40%{background-color: #e5903a;}
+            50%{background-color: #a58828;}
+            60%{background-color: #bc3bbc;}
+            70%{background-color: #164a16;}
+            80%{background-color: #d94646;}
+            90%{background-color: #b96c52;}
+            100%{background-color: #bcef32;}
+        }
+    </style>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<h2>Color Cycle</h2>
+<div class="card" style="width: 50%; padding: 15px;">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">#</span>
+        </div>
+        <input id="inputRed" type="text" class="form-control" placeholder="Red" aria-label="Red">
+        <input id="inputGreen" type="text" class="form-control" placeholder="Green" aria-label="Green">
+        <input id="inputBlue" type="text" class="form-control" placeholder="Blue" aria-label="Blue">
+    </div>
+    <div class="input-group" style="margin-top: 5px; margin-bottom: 10px">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">+</span>
+        </div>
+        <input id="incrementRed" type="text" class="form-control" placeholder="+Red" aria-label="Red">
+        <input id="incrementGreen" type="text" class="form-control" placeholder="+Green" aria-label="Green">
+        <input id="incrementBlue" type="text" class="form-control" placeholder="+Blue" aria-label="Blue">
+    </div>
+    <button id="toggleButton" type="button" class="btn btn-sm btn-info" onclick="changeColor(); startCycle(); changeBtn();">Start</button>
+    <div class="card" style="height: 300px; margin-top: 10px">
+        <div id="box" class="card-body" style="background-color: white">&nbsp;</div>
+    </div>
+</div>
+
+<!--Custom JS-->
+<script>
+    let is_stopped = true
+    function testRegex(input){
+        let regex = new RegExp("^[0-9a-f]{1,2}$");
+        if(!regex.test(input)) {
+            alert(input+" não é parte hexadecimal");
+        }
+        return true
+    }
+    function changeColor(){
+        let inputRed = document.getElementById("inputRed").value;
+        let inputGreen = document.getElementById("inputGreen").value;
+        let inputBlue = document.getElementById("inputBlue").value;
+        testRegex(inputRed);
+        testRegex(inputGreen);
+
+        testRegex(inputBlue);
+        document.getElementById("box").style.backgroundColor = '#'+inputRed+inputGreen+inputBlue
+    }
+    function changeBtn() {
+        is_stopped = !is_stopped;
+        if(is_stopped) {
+            document.getElementById("toggleButton").innerHTML = "Start";
+            document.getElementById("inputRed").disabled = false;
+            document.getElementById("inputGreen").disabled = false;
+            document.getElementById("inputBlue").disabled = false;
+            document.getElementById("incrementRed").disabled = false;
+            document.getElementById("incrementGreen").disabled = false;
+            document.getElementById("incrementBlue").disabled = false;
+        }else {
+            document.getElementById("toggleButton").innerHTML = "Stop";
+            document.getElementById("inputRed").disabled = true;
+            document.getElementById("inputGreen").disabled = true;
+            document.getElementById("inputBlue").disabled = true;
+            document.getElementById("incrementRed").disabled = true;
+            document.getElementById("incrementGreen").disabled = true;
+            document.getElementById("incrementBlue").disabled = true;
+        }
+    }
+    function startCycle(time = "10.25s") {
+        if (is_stopped){
+            document.getElementById("box").style.animationName = "colorchange"
+            document.getElementById("box").style.animationDuration = time
+            document.getElementById("box").style.animationDelay = "0s"
+            document.getElementById("box").style.animationIterationCount = "infinite"
+        }else {
+            document.getElementById("box").style.animationName = ""
+            document.getElementById("box").style.animationDuration = ""
+            document.getElementById("box").style.animationDelay = ""
+            document.getElementById("box").style.animationIterationCount = ""
+        }
+    }
+</script>
+<!--jQuery, Popper.js, Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
