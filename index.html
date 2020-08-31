@@ -51,9 +51,10 @@
     </div>
     <button id="toggleButton" type="button" class="btn btn-sm btn-info" onclick="changeColor(); startCycle(); changeBtn();">Start</button>
     <div class="card" style="height: 300px; margin-top: 10px">
-    <div id="box" class="card-body" style="background-color: white">&nbsp;</div>
+        <div id="box" class="card-body" style="background-color: white">&nbsp;</div>
+    </div>
 </div>
-</div>
+
 <!--Custom JS-->
 <script>
     let is_stopped = true
@@ -94,10 +95,10 @@
             document.getElementById("incrementBlue").disabled = true;
         }
     }
-    function startCycle() {
+    function startCycle(time = "10.25s") {
         if (is_stopped){
             document.getElementById("box").style.animationName = "colorchange"
-            document.getElementById("box").style.animationDuration = "10.25s"
+            document.getElementById("box").style.animationDuration = time
             document.getElementById("box").style.animationDelay = "0s"
             document.getElementById("box").style.animationIterationCount = "infinite"
         }else {

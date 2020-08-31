@@ -30,7 +30,7 @@ an RGB color specification (e.g. `#000000` color code).
 
 ## Bonus features
 
--   [ ] User can change the time interval between color changes
+-   [X] User can change the time interval between color changes
 -   [ ] User can specify the color encoding format used from RGB to another format like HSL
 
 ## Useful links and resources
